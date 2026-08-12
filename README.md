@@ -19,18 +19,16 @@ EVALUCION_UNIDAD_IV_DIAZ/
 ├── README.md
 ├── figuras/
 │   ├── P1_diagrama_clases.jpeg
-│   ├── P2_diagrama_actividades.jpeg
+│   ├── P2_diagrama_actividades.png
 │   └── P3_maquina_estados.png
 └── evidencias/
     ├── resumen_sga.png
     └── revision_intento_sga.png
 ```
 
-La carpeta `figuras/` es necesaria para la compilación, debido a que
-`main.tex` utiliza las imágenes almacenadas en dicha ubicación.
+La carpeta `figuras/` es necesaria para la compilación, debido a que `main.tex` utiliza las imágenes almacenadas en dicha ubicación.
 
-La carpeta `evidencias/` contiene las capturas correspondientes al
-desarrollo de la evaluación y no interviene en la compilación del PDF.
+La carpeta `evidencias/` contiene las capturas correspondientes al desarrollo de la evaluación y no interviene en la compilación del PDF práctico.
 
 ### Compilador
 
@@ -40,16 +38,15 @@ Utilizar:
 pdfLaTeX
 ```
 
-### Comando de compilación
+### Comandos de compilación
 
-Desde la raíz del repositorio ejecutar:
+Desde la raíz del repositorio, ejecutar:
 
 ```bash
 pdflatex -interaction=nonstopmode -halt-on-error main.tex
 ```
 
-Ejecutar el comando una segunda vez para asegurar la correcta resolución
-de referencias internas:
+Ejecutar el comando una segunda vez para asegurar la correcta resolución de las referencias internas:
 
 ```bash
 pdflatex -interaction=nonstopmode -halt-on-error main.tex
@@ -61,14 +58,13 @@ El archivo generado será:
 main.pdf
 ```
 
-Para la entrega final, el documento compilado se encuentra versionado en
-el repositorio con el nombre:
+Para la entrega final, el documento compilado se encuentra versionado en el repositorio con el nombre:
 
 ```text
 EVALUACION_UNIDAD_IV_DIAZ.pdf
 ```
 
-### Dependencias LaTeX
+### Dependencias de LaTeX
 
 El documento requiere los siguientes paquetes:
 
@@ -83,11 +79,11 @@ El documento requiere los siguientes paquetes:
 - float
 - hyperref
 
-Se recomienda una distribución LaTeX actualizada, como TeX Live.
+Se recomienda utilizar una distribución actualizada de LaTeX, como TeX Live.
 
 ### Compilación en Overleaf
 
-También puede reproducirse mediante Overleaf:
+El documento también puede compilarse mediante Overleaf siguiendo estos pasos:
 
 1. Importar o subir el contenido completo del repositorio.
 2. Mantener `main.tex` y la carpeta `figuras/` en sus ubicaciones originales.
