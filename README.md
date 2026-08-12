@@ -81,9 +81,26 @@ El documento requiere los siguientes paquetes:
 
 Se recomienda utilizar una distribución actualizada de LaTeX, como TeX Live.
 
+### Requisito adicional del sistema
+
+El documento usa `\usepackage[spanish]{babel}`, por lo que además de los paquetes
+LaTeX listados arriba, la máquina donde se compile debe tener instalado el
+soporte de idioma español para TeX Live:
+
+```bash
+sudo apt-get install texlive-lang-spanish
+```
+
+Sin este paquete, la compilación falla con el error `Package babel Error:
+Unknown option 'spanish'` y no se genera el PDF. Este paquete ya viene incluido
+en instalaciones completas de TeX Live (`texlive-full`) y en Overleaf, por lo
+que en esos entornos no se requiere ninguna acción adicional.
+
 ### Compilación en Overleaf
 
-El documento también puede compilarse mediante Overleaf siguiendo estos pasos:
+El documento también puede compilarse mediante Overleaf siguiendo estos pasos
+(Overleaf ya incluye el soporte de idioma español, no requiere instalación
+adicional):
 
 1. Importar o subir el contenido completo del repositorio.
 2. Mantener `main.tex` y la carpeta `figuras/` en sus ubicaciones originales.
