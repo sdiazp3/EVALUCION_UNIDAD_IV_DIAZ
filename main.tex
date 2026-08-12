@@ -18,7 +18,8 @@
     right=2cm
 }
 
-\graphicspath{{figuras/}}
+% Carpetas de imágenes
+\graphicspath{{figuras/}{evidencias/}}
 
 \hypersetup{
     colorlinks=true,
@@ -77,6 +78,43 @@
 
 \end{titlepage}
 
+% ==================================================
+% EVIDENCIAS DEL CUESTIONARIO DEL SGA
+% ==================================================
+
+\section*{Evidencia 1: Resumen del cuestionario}
+
+La siguiente captura corresponde al resumen del cuestionario realizado
+en el Sistema de Gestión Académica (SGA).
+
+\vspace{0.5cm}
+
+\begin{center}
+\includegraphics[
+    width=\textwidth,
+    height=0.72\textheight,
+    keepaspectratio
+]{resumen_sga.png}
+\end{center}
+
+\newpage
+
+\section*{Evidencia 2: Revisión del intento}
+
+La siguiente captura corresponde a la revisión del intento realizado
+en el Sistema de Gestión Académica (SGA).
+
+\vspace{0.5cm}
+
+\begin{center}
+\includegraphics[
+    width=\textwidth,
+    height=0.72\textheight,
+    keepaspectratio
+]{revision_intento_sga.png}
+\end{center}
+
+\newpage
 
 % ==================================================
 % P1
@@ -94,7 +132,6 @@
 
 \newpage
 
-
 % ==================================================
 % P2
 % ==================================================
@@ -111,7 +148,6 @@
 
 \newpage
 
-
 % ==================================================
 % P3
 % ==================================================
@@ -127,7 +163,6 @@
 \end{center}
 
 \newpage
-
 
 % ==================================================
 % P4
@@ -157,28 +192,39 @@ Pedido: idPedido, fecha, total, estado \\
 \hline
 
 confirmarPedido &
-Confirmar Pedido &
+Confirmar pedido &
 Pedido: estado \\
 \hline
 
 despacharPedido &
-No aparece en P2 &
+Despachar pedido &
 Pedido: estado \\
 \hline
 
 entregarPedido &
-No aparece en P2 &
+No corresponde al proceso de registro; pertenece al proceso posterior de entrega &
+Pedido: estado \\
+\hline
+
+anularPedido &
+No corresponde al proceso de registro; puede ejecutarse mientras el pedido no esté entregado &
 Pedido: estado \\
 \hline
 
 \end{tabularx}
 \end{table}
 
-Se documentó un error ya que despachar Pedido no se encuentra en el
-diagrama de actividades, para su corrección agregaré despachar Pedido
-bajo la consigna de confirmar Pedido, ya actualmente aquel error fue
-corregido en el diagrama de actividades que se encuentra en P2.
+Se detectó inicialmente una inconsistencia debido a que el evento
+\texttt{despacharPedido}, presente en la máquina de estados de P3,
+no aparecía como acción en el diagrama de actividades de P2.
 
+El defecto fue documentado y posteriormente corregido mediante la
+incorporación de la actividad ``Despachar pedido'' después de
+``Confirmar pedido'' en el diagrama de actividades de P2.
+
+Los eventos \texttt{entregarPedido} y \texttt{anularPedido} no forman
+parte del proceso específico ``Registrar pedido'', debido a que
+corresponden a procesos posteriores del ciclo de vida del pedido.
 
 % ==================================================
 % P5
@@ -198,46 +244,41 @@ corregido en el diagrama de actividades que se encuentra en P2.
 \hline
 
 \textbf{ID} &
-\textbf{Requisito Descripción} &
-\textbf{Característica normas ISO} \\
+\textbf{Descripción del requisito} &
+\textbf{Característica o métrica} \\
 \hline
 
 RF-01 &
 El sistema deberá permitir registrar un pedido asociado a un cliente
 con una o más líneas de pedido. &
-Registrar Pedido \\
+Requisito funcional: registrar pedido \\
 \hline
 
 RF-02 &
 El sistema deberá verificar la disponibilidad del stock antes de
-confirmar un producto. &
-Verificar Stock \\
+confirmar un pedido. &
+Requisito funcional: verificar stock \\
 \hline
 
 RNF-01 &
 El sistema deberá registrar un pedido en un tiempo menor a 3 segundos. &
-Eficiencia de desempeño $<3s$ \\
+ISO/IEC 25010:2023: eficiencia de desempeño. Umbral: menor a 3 segundos \\
 \hline
 
 RNF-02 &
-El sistema deberá proteger los datos personales del cliente mediante
-cifrado durante su transmisión. &
-Seguridad; 99\% \\
+El sistema deberá proteger el 100\% de los datos personales del cliente
+durante su transmisión mediante HTTPS con TLS 1.2 o superior. &
+ISO/IEC 25010:2023: seguridad y confidencialidad. Umbral: 100\% de transmisiones cifradas \\
 \hline
 
 \end{tabularx}
 \end{table}
 
-En cuanto a la métrica de seguridad se le asigna un valor de al menos
-99\% ya que nada es completamente seguro en esta vida y puede llegar
-a ocurrir un error en la transmisión.
-
-
 % ==================================================
 % ESQUEMA DE ATRIBUTOS
 % ==================================================
 
-\subsection*{Esquema de Atributos}
+\subsection*{Esquema de atributos}
 
 \begin{table}[H]
 \centering
@@ -252,11 +293,18 @@ a ocurrir un error en la transmisión.
 }
 \hline
 
-\textbf{Identificador} &
+\textbf{Atributo} &
 \textbf{RF-01} &
 \textbf{RF-02} &
 \textbf{RNF-01} &
 \textbf{RNF-02} \\
+\hline
+
+Identificador &
+RF-01 &
+RF-02 &
+RNF-01 &
+RNF-02 \\
 \hline
 
 Prioridad &
@@ -274,10 +322,10 @@ Propuesto \\
 \hline
 
 Fuente &
-Caso Práctico &
-Caso Práctico &
-Caso Práctico &
-Caso Práctico \\
+Caso práctico &
+Caso práctico &
+Caso práctico &
+Caso práctico \\
 \hline
 
 Estabilidad &
@@ -294,16 +342,15 @@ Versión &
 1.0 \\
 \hline
 
-Verificación &
-Prueba Funcional &
-Prueba Funcional &
-Prueba Funcional &
-Prueba Funcional \\
+Método de verificación &
+Prueba funcional &
+Prueba funcional &
+Prueba de rendimiento &
+Prueba de seguridad e inspección \\
 \hline
 
 \end{tabularx}
 \end{table}
-
 
 % ==================================================
 % P6
@@ -327,31 +374,30 @@ Prueba Funcional \\
 \textbf{Justificación} \\
 \hline
 
-RF-01 Registrar Pedido &
+RF-01 Registrar pedido &
 Must Have &
-Es la función principal del sistema, sin él no se pueden gestionar pedidos. \\
+Es la función principal del sistema; sin ella no se pueden gestionar pedidos. \\
 \hline
 
-RF-02 Verificar Stock &
+RF-02 Verificar stock &
 Must Have &
-Es necesario para evitar la confirmación de pedidos cuando no hay
-stock del producto. \\
+Es necesario para evitar la confirmación de pedidos cuando no existe
+stock suficiente del producto. \\
 \hline
 
-RNF-01 Tiempo de Respuesta &
+RNF-01 Tiempo de respuesta &
 Should Have &
-Es importante que el registro sea rápido pero el sistema puede
-funcionar aunque no alcance ese tiempo. \\
+Es importante que el registro sea rápido, pero el sistema puede funcionar
+aunque temporalmente no alcance el tiempo establecido. \\
 \hline
 
 RNF-02 Seguridad &
 Must Have &
-Es importante mantener la seguridad del cliente. \\
+Es indispensable proteger los datos personales del cliente durante su transmisión. \\
 \hline
 
 \end{tabularx}
 \end{table}
-
 
 % ==================================================
 % P7
@@ -374,7 +420,7 @@ Es importante mantener la seguridad del cliente. \\
 \textbf{Singular} &
 \textbf{Verificable} &
 \textbf{Factible} &
-\textbf{Defecto} \\
+\textbf{Defecto detectado} \\
 \hline
 
 RF-01 &
@@ -401,7 +447,7 @@ No &
 Sí &
 Sí &
 Sí &
-No especifica bajo qué condiciones se medirán los 3s \\
+No especifica las condiciones bajo las cuales se medirán los 3 segundos \\
 \hline
 
 RNF-02 &
@@ -410,22 +456,25 @@ No &
 Sí &
 No &
 Sí &
-No especifica qué cifrado o mecanismo comprueba la protección \\
+No especifica el mecanismo de cifrado ni el porcentaje de transmisiones protegidas \\
 \hline
 
 \end{tabularx}
 \end{table}
 
-\subsection*{RNF-01 Corregido -- V1.1}
+\subsection*{Retrabajo de los requisitos}
+
+\subsubsection*{RNF-01 corregido -- Versión 1.1}
 
 El sistema deberá registrar un pedido en un tiempo menor a 3 segundos,
 bajo una carga de hasta 50 usuarios concurrentes.
 
-\subsection*{RNF-02 Corregido -- V1.1}
+\subsubsection*{RNF-02 corregido -- Versión 1.1}
 
-El sistema deberá transmitir el 99\% de los datos personales del cliente
-mediante una conexión cifrada HTTPS/TLS.
-
+El sistema deberá proteger el 100\% de los datos personales del cliente
+durante su transmisión mediante HTTPS con TLS 1.2 o superior. El
+cumplimiento se verificará mediante una prueba de conexión segura y
+una inspección de la configuración del servidor.
 
 % ==================================================
 % P8
@@ -456,34 +505,33 @@ mediante una conexión cifrada HTTPS/TLS.
 PA-01 &
 RF-01 &
 Funcional &
-Cliente válido, 2 productos y cantidades &
+Cliente válido, dos productos y sus cantidades &
 El pedido se registra correctamente con una o más líneas de pedido \\
 \hline
 
 PA-02 &
 RF-02 &
 Funcional &
-Producto solicitado: 10 unidades; stock 5 &
+Producto solicitado: 10 unidades; stock disponible: 5 unidades &
 El sistema detecta que no existe stock suficiente y no confirma el pedido \\
 \hline
 
 PA-03 &
 RNF-01 &
-No Funcional &
-Registro de pedidos con hasta 50 usuarios &
+No funcional &
+Registro de pedidos con hasta 50 usuarios concurrentes &
 El pedido se registra en menos de 3 segundos \\
 \hline
 
 PA-04 &
 RNF-02 &
-No Funcional &
-Transmisión de datos personales de un cliente &
-El 99\% de los datos personales se transmiten mediante HTTPS/TLS \\
+No funcional &
+Transmisión de datos personales mediante una conexión de prueba &
+El 100\% de los datos personales se transmite mediante HTTPS con TLS 1.2 o superior \\
 \hline
 
 \end{tabularx}
 \end{table}
-
 
 % ==================================================
 % P9
@@ -508,38 +556,38 @@ El 99\% de los datos personales se transmiten mediante HTTPS/TLS \\
 \textbf{Requisito} &
 \textbf{Fuente} &
 \textbf{Modelo relacionado} &
-\textbf{Prueba aceptación} &
-\textbf{Dependencia Horizontal} &
+\textbf{Prueba de aceptación} &
+\textbf{Dependencia horizontal} &
 \textbf{¿Huérfano?} \\
 \hline
 
 RF-01 Registrar pedido &
-Caso Práctico &
-P1 clases, P2 Actividades &
+Caso práctico &
+P1 clases y P2 actividades &
 PA-01 &
 -- &
 No \\
 \hline
 
 RF-02 Verificar stock &
-Caso Práctico &
-P1 clases, P2 Actividades, P3 estados &
+Caso práctico &
+P1 clases, P2 actividades y P3 estados &
 PA-02 &
 RF-01 &
 No \\
 \hline
 
-RNF-01 Rendimiento $<3s$ &
-Caso Práctico &
-P2 Actividades &
+RNF-01 Rendimiento menor a 3 segundos &
+Caso práctico &
+P2 actividades &
 PA-03 &
 RF-01 &
 No \\
 \hline
 
-RNF-02 Seguridad datos &
-Caso Práctico &
-P1 Clases &
+RNF-02 Seguridad de datos &
+Caso práctico &
+P1 clases &
 PA-04 &
 RF-01 &
 No \\
@@ -548,12 +596,15 @@ No \\
 \end{tabularx}
 \end{table}
 
+No se identificaron requisitos huérfanos, debido a que todos los
+requisitos tienen una fuente, un modelo relacionado y una prueba de
+aceptación asociada.
 
 % ==================================================
 % P10
 % ==================================================
 
-\section*{P10. Gestión de cambio y línea base}
+\section*{P10. Gestión del cambio y línea base}
 
 \subsection*{1. Solicitud de cambio -- RFC-01}
 
@@ -580,11 +631,11 @@ RNF-01 \\
 \hline
 
 Versión actual &
-1.0 \\
+1.1 \\
 \hline
 
 Cambio solicitado &
-Reducir el tiempo máximo de registro de 3 a 2s \\
+Reducir el tiempo máximo de registro de 3 a 2 segundos \\
 \hline
 
 Motivo &
@@ -592,14 +643,13 @@ Mejorar la rapidez del registro de pedidos \\
 \hline
 
 Estado &
-En evaluación \\
+Aprobada \\
 \hline
 
 \end{tabularx}
 \end{table}
 
-
-\subsection*{2. Análisis de Impacto}
+\subsection*{2. Análisis de impacto}
 
 \begin{table}[H]
 \centering
@@ -616,43 +666,113 @@ En evaluación \\
 \hline
 
 RNF-01 &
-Cambiar umbral de 3s a 2s \\
+Cambiar el umbral de 3 a 2 segundos y actualizar su versión a 1.2 \\
 \hline
 
 PA-03 &
-Cambiar criterio de éxito a menos de 2s \\
+Cambiar el criterio de éxito a menos de 2 segundos \\
 \hline
 
-P2-Actividades &
+P2 -- Diagrama de actividades &
 Se mantiene relacionado con RNF-01 \\
 \hline
 
-Matriz P9 &
-Actualizar versión de RNF-01 \\
+Matriz de trazabilidad P9 &
+Actualizar la versión y el umbral de RNF-01 \\
 \hline
 
 ERS &
-Actualizar requisito \\
+Actualizar RNF-01 a la versión 1.2 \\
 \hline
 
 \end{tabularx}
 \end{table}
 
-
 \subsection*{3. Decisión del CCB}
 
 \textbf{Decisión: APROBADA.}
 
-El CCB aprueba la mejora de cambio para mejorar la eficiencia del Sistema.
+El Comité de Control de Cambios (CCB) aprueba la solicitud RFC-01
+porque la reducción del tiempo máximo de registro mejora la eficiencia
+del sistema y es técnicamente factible.
 
+\subsection*{4. Actualización de versión}
 
-\subsection*{4. Actualización de Versión}
+\begin{itemize}
+    \item RNF-01 versión 1.0: tiempo menor a 3 segundos, sin condición de carga.
+    \item RNF-01 versión 1.1: tiempo menor a 3 segundos con hasta 50 usuarios concurrentes.
+    \item RNF-01 versión 1.2: tiempo menor a 2 segundos con hasta 50 usuarios concurrentes.
+\end{itemize}
 
-RNF-01 v1.0 $\rightarrow <3$ Segundos
+La versión vigente después de la aprobación de RFC-01 es:
 
-\vspace{0.2cm}
+\begin{quote}
+\textbf{RNF-01 -- Versión 1.2:} El sistema deberá registrar un pedido
+en un tiempo menor a 2 segundos, bajo una carga de hasta 50 usuarios
+concurrentes.
+\end{quote}
 
-RNF-01 v1.1 $\rightarrow <2$ Segundos
+Como consecuencia del cambio, el criterio de éxito de PA-03 se
+actualiza a: ``El pedido se registra en menos de 2 segundos con hasta
+50 usuarios concurrentes''.
 
+\subsection*{5. Declaración de la línea base}
+
+Después de la aprobación de la solicitud RFC-01 por parte del CCB,
+se establece la línea base \textbf{LB-1.2}.
+
+\begin{table}[H]
+\centering
+\small
+
+\begin{tabularx}{0.92\textwidth}{
+|>{\raggedright\arraybackslash}p{5cm}
+|>{\centering\arraybackslash}X|
+}
+\hline
+
+\textbf{Elemento de configuración} &
+\textbf{Versión congelada} \\
+\hline
+
+ERS del Sistema de Gestión de Pedidos &
+1.2 \\
+\hline
+
+Requisitos RF-01 y RF-02 &
+1.0 \\
+\hline
+
+Requisito RNF-01 &
+1.2 \\
+\hline
+
+Requisito RNF-02 &
+1.1 \\
+\hline
+
+Diagramas UML P1, P2 y P3 &
+1.1 \\
+\hline
+
+Matriz de trazabilidad P9 &
+1.2 \\
+\hline
+
+Pruebas de aceptación PA-01 a PA-04 &
+1.2 \\
+\hline
+
+Solicitud de cambio RFC-01 &
+Aprobada \\
+\hline
+
+\end{tabularx}
+\end{table}
+
+Esta configuración queda congelada como línea base. Cualquier cambio
+posterior deberá registrarse mediante una nueva solicitud de cambio,
+analizarse mediante la matriz de trazabilidad y someterse a la aprobación
+del CCB.
 
 \end{document}
