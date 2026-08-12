@@ -21,14 +21,18 @@ EVALUCION_UNIDAD_IV_DIAZ/
 │   ├── P1_diagrama_clases.jpeg
 │   ├── P2_diagrama_actividades.png
 │   └── P3_maquina_estados.png
-└── evidencias/
-    ├── resumen_sga.png
-    └── revision_intento_sga.png
+├── evidencias/
+│   ├── resumen_sga.png
+│   └── revision_intento_sga.png
+└── evidencias_manuscritas/
+    └── (fotos del desarrollo manuscrito realizado en clase)
 ```
 
 La carpeta `figuras/` es necesaria para la compilación, debido a que `main.tex` utiliza las imágenes almacenadas en dicha ubicación.
 
-La carpeta `evidencias/` contiene las capturas correspondientes al desarrollo de la evaluación y no interviene en la compilación del PDF práctico.
+La carpeta `evidencias/` contiene las capturas correspondientes al cuestionario del SGA y no interviene en la compilación del PDF práctico.
+
+La carpeta `evidencias_manuscritas/` contiene las fotografías del desarrollo original hecho a mano durante la sesión en clase. Tampoco interviene en la compilación del PDF; se conserva como respaldo del trabajo individual realizado en el aula.
 
 ### Compilador
 
